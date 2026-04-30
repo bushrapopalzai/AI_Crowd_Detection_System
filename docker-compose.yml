@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  detection-api:
+    build: .
+    container_name: ai-detection-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./detection_records.db:/app/detection_records.db
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+      - ./config.yaml:/app/config.yaml
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    networks:
+      - detection-network
+
+  detection-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: ai-detection-ui
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./detection_records.db:/app/detection_records.db
+      - ./reports:/app/reports
+    depends_on:
+      - detection-api
+    environment:
+      - API_URL=http://detection-api:8000
+    restart: unless-stopped
+    networks:
+      - detection-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: ai-detection-db
+    environment:
+      POSTGRES_DB: detection_db
+      POSTGRES_USER: detection
+      POSTGRES_PASSWORD: secure_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - detection-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: ai-detection-cache
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - detection-network
+
+volumes:
+  postgres_data:
+
+networks:
+  detection-network:
+    driver: bridge
