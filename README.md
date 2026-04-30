@@ -1,167 +1,187 @@
 # AI Crowd Detection System v4.0
 
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org)
+[![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-green)](https://github.com/ultralytics/ultralytics)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)](https://github.com/bushrapopalzai/AI_Crowd_Detection_System)
+
 A production-ready real-time object and crowd detection application with multi-camera support, REST API, cloud sync, and advanced analytics.
 
-**Status:** ✅ Phase 1-5 Complete | Production Ready
-
----
-
-## 🎯 Features Overview
+## 🎯 Features
 
 ### Core Detection
-- ✅ **YOLOv8s Model** - High accuracy object detection (configurable: yolov8n/s/m)
-- ✅ **Real-time Processing** - 30+ FPS on standard hardware
-- ✅ **Adaptive Frame Skipping** - Dynamic optimization based on inference latency
-- ✅ **Confidence Calibration** - Adjustable detection thresholds
+- ✅ Real-time object detection using YOLOv8 (configurable: n/s/m)
+- ✅ Live webcam and video file processing
+- ✅ Adaptive frame skipping for performance optimization
+- ✅ Confidence threshold calibration
+- ✅ 30+ FPS on standard hardware
 
 ### Multi-Camera & Streaming
-- ✅ **4+ Simultaneous Cameras** - Parallel stream processing
-- ✅ **RTSP/HTTP Support** - IP cameras, NVR systems, drones
-- ✅ **MJPEG Streaming** - Real-time video over HTTP
-- ✅ **Grid View Dashboard** - Multi-camera monitoring interface
+- ✅ 4+ simultaneous camera support
+- ✅ RTSP/HTTP stream support (IP cameras, NVR, drones)
+- ✅ MJPEG streaming over HTTP
+- ✅ Grid view monitoring dashboard
+- ✅ Parallel stream processing
 
 ### Tracking & Analytics
-- ✅ **ByteTrack** - Lightweight object tracking with unique IDs
-- ✅ **Heatmap Overlay** - Real-time crowd density visualization
-- ✅ **Crowd Density Analysis** - People per grid cell calculation
-- ✅ **Trajectory Trails** - Movement pattern tracking
-- ✅ **Anomaly Detection** - Sudden crowd changes alert system
+- ✅ ByteTrack object tracking with unique IDs
+- ✅ Real-time heatmap overlay for crowd density
+- ✅ Trajectory trail visualization
+- ✅ Crowd density analysis per grid cell
+- ✅ Anomaly detection with configurable alerts
 
 ### Database & Storage
-- ✅ **SQLite Database** - 10x faster than Excel, ACID compliance
-- ✅ **Async I/O** - Non-blocking database writes
-- ✅ **Cloud Sync** - Google Drive & AWS S3 auto-backup
-- ✅ **Data Retention** - Automatic archiving policies
+- ✅ SQLite database (10x faster than Excel)
+- ✅ Async I/O non-blocking writes
+- ✅ ACID compliance
+- ✅ Cloud sync (Google Drive, AWS S3)
+- ✅ Automatic data retention policies
+- ✅ 500+ records/sec write speed
 
 ### REST API & Integration
-- ✅ **FastAPI Server** - Full REST API with documentation
-- ✅ **WebSocket Support** - Real-time live updates
-- ✅ **Swagger UI** - Interactive API documentation
-- ✅ **Multi-format Export** - JSON, CSV, PDF reports
+- ✅ FastAPI server with full REST API
+- ✅ WebSocket real-time updates
+- ✅ Swagger UI interactive documentation
+- ✅ Multi-format export (JSON, CSV, PDF)
+- ✅ <50ms API latency
 
 ### Advanced Analytics
-- ✅ **Peak Hour Analysis** - Detect busy times
-- ✅ **Trend Detection** - 7-day trend analysis
-- ✅ **Anomaly Detection** - Statistical outlier identification
-- ✅ **Class Distribution** - Detection breakdown by object type
-- ✅ **Confidence Statistics** - Detection quality metrics
-
-### Automated Reports
-- ✅ **Daily Reports** - Scheduled PDF & JSON generation
-- ✅ **Weekly Reports** - Comprehensive weekly summaries
-- ✅ **Custom Scheduling** - Cron-like report timing
-- ✅ **Email Integration** - Report delivery (optional)
-
-### Deployment
-- ✅ **Docker Support** - Production-ready containers
-- ✅ **Docker Compose** - Multi-service orchestration
-- ✅ **PostgreSQL Integration** - Enterprise database option
-- ✅ **Redis Caching** - Performance optimization
+- ✅ Peak hour analysis
+- ✅ 7-day trend detection
+- ✅ Statistical anomaly detection
+- ✅ Class distribution breakdown
+- ✅ Automated daily/weekly reports
+- ✅ Interactive real-time charts
 
 ### User Interface
-- ✅ **PyQt6 GUI** - Modern professional interface
-- ✅ **Dark/Light Theme** - System-aware theming
-- ✅ **Tkinter Fallback** - Lightweight alternative
-- ✅ **Streamlit Dashboard** - Web-based monitoring
-- ✅ **Interactive Charts** - Real-time analytics visualization
+- ✅ Modern Tkinter GUI with dark theme
+- ✅ PyQt6 professional interface (optional)
+- ✅ Interactive real-time charts (4 chart types)
+- ✅ Export to CSV and PDF
+- ✅ Live statistics dashboard
+- ✅ Streamlit web dashboard alternative
 
----
+### Deployment
+- ✅ Docker support with production-ready containers
+- ✅ Docker Compose multi-service orchestration
+- ✅ PostgreSQL enterprise database option
+- ✅ Redis caching layer
+- ✅ One-click batch launchers
 
-## 📦 Installation
+## 📦 Project Structure
+
+```
+AI-Crowd-Detection/
+├── app.py                 # Main application entry point
+├── gui.py                 # PyQt6 graphical interface
+├── tracking.py            # Object tracking & heatmaps
+├── multicamera.py         # Multi-camera & stream management
+├── analytics.py           # Reports, analytics & cloud sync
+├── config.yaml            # Centralized configuration
+├── requirements.txt       # Python dependencies
+├── Dockerfile             # Docker container definition
+├── docker-compose.yml     # Multi-service orchestration
+├── RUN.bat                # One-click launcher (Simple)
+├── RUN_MULTICAM.bat       # One-click launcher (Multi-Camera)
+├── RUN_DOCKER.bat         # One-click launcher (Docker)
+├── RUN_ANALYTICS.bat      # One-click launcher (Analytics)
+├── detection_records.db   # SQLite database (auto-created)
+├── yolov8s.pt             # YOLOv8 model weights (auto-downloaded)
+├── README.md              # This file
+├── QUICK_START.md         # Quick start guide
+└── .gitignore             # Git ignore rules
+```
+
+## 🚀 Installation
 
 ### Prerequisites
-- Python 3.10+
-- 4GB+ RAM
-- GPU optional (CUDA/OpenVINO for acceleration)
+- **Python 3.10+** - Download from https://www.python.org
+  - ✅ Check "Add Python to PATH" during installation
+- **4GB+ RAM**
+- **Webcam or IP Camera** (optional)
+- **GPU optional** (CUDA/OpenVINO for acceleration)
 
-### Quick Start
+### Quick Start (Recommended)
 
-#### Option 1: Local Installation
+#### Option 1: One-Click Launcher (Windows)
+```bash
+# Simply double-click one of these files:
+RUN.bat                 # Single camera (easiest)
+RUN_MULTICAM.bat        # Multi-camera + API
+RUN_DOCKER.bat          # Full stack with Docker
+RUN_ANALYTICS.bat       # Reports & analytics
+```
+
+#### Option 2: Local Installation
 ```bash
 # Clone repository
 git clone https://github.com/bushrapopalzai/AI_Crowd_Detection_System.git
-cd AI-PROJECT
+cd AI-Crowd-Detection
 
 # Install dependencies
-pip install -r requirements_v2.txt
+pip install -r requirements.txt
 
 # Run application
-python main_v2.py
-```
-
-#### Option 2: Multi-Camera with API
-```bash
-python phase4_multicamera.py
-# API available at http://localhost:8000
-# Docs at http://localhost:8000/docs
+python app.py
 ```
 
 #### Option 3: Docker Deployment
 ```bash
-# Build and run with docker-compose
+# Build and run
 docker-compose up -d
 
 # Services:
 # - API: http://localhost:8000
-# - UI: http://localhost:8501
-# - Database: localhost:5432
-# - Cache: localhost:6379
+# - Streamlit UI: http://localhost:8501
+# - PostgreSQL: localhost:5432
+# - Redis: localhost:6379
 ```
 
----
+## 📖 Usage
 
-## 🚀 Usage
-
-### Single Camera
+### Single Camera (GUI Mode)
 ```bash
-python main_v2.py
-# Click "Start Camera" or "Upload Video"
+python app.py
 ```
+Then:
+1. Click "📷 Start Camera" for webcam
+2. Click "📁 Upload Video" for video file
+3. Watch real-time detections
+4. View analytics in "Analytics & Charts" tab
+5. Export data in "Export & Reports" tab
 
-### Multi-Camera Setup
-```python
-from phase4_multicamera import MultiCameraManager, MultiCameraProcessor
-from main_v2 import DetectionModel, SQLiteDB
-
-model = DetectionModel('yolov8s.pt')
-db = SQLiteDB()
-camera_manager = MultiCameraManager(max_cameras=4)
-
-# Add cameras
-camera_manager.add_camera("cam1", 0, "webcam")
-camera_manager.add_camera("cam2", "rtsp://192.168.1.100:554/stream", "rtsp")
-
-# Start processing
-for cam_id, cam_info in camera_manager.cameras.items():
-    processor = MultiCameraProcessor(cam_id, cam_info['source'], model, db, 
-                                    camera_manager, threading.Event())
-    processor.start()
-```
-
-### REST API
+### Multi-Camera with API
 ```bash
-# Get all cameras
+python app.py --mode api
+# API available at http://localhost:8000
+# Docs at http://localhost:8000/docs
+```
+
+### REST API Examples
+
+```bash
+# Health check
+curl http://localhost:8000/api/health
+
+# List cameras
 curl http://localhost:8000/api/cameras
 
 # Add camera
 curl -X POST http://localhost:8000/api/cameras/add \
   -H "Content-Type: application/json" \
-  -d '{"camera_id":"cam1","source":"rtsp://...","source_type":"rtsp"}'
-
-# Stream camera
-curl http://localhost:8000/api/cameras/cam1/stream > video.mjpeg
+  -d '{"camera_id":"cam1","source":"rtsp://192.168.1.100:554/stream","source_type":"rtsp"}'
 
 # Get detection summary
 curl http://localhost:8000/api/detections/summary
 
-# Full API docs
-open http://localhost:8000/docs
+# Get model info
+curl http://localhost:8000/api/model/info
 ```
 
 ### Generate Reports
 ```python
-from phase5_analytics import ReportGenerator, AdvancedAnalytics
-from main_v2 import SQLiteDB
+from analytics import ReportGenerator, AdvancedAnalytics
+from app import SQLiteDB
 
 db = SQLiteDB()
 analytics = AdvancedAnalytics(db)
@@ -170,110 +190,10 @@ report_gen = ReportGenerator(db, analytics)
 # Daily report
 daily = report_gen.generate_daily_report()
 report_gen.export_report_json(daily, "reports/daily.json")
-report_gen.export_report_pdf(daily, "reports/daily.pdf")
 
 # Weekly report
 weekly = report_gen.generate_weekly_report()
 ```
-
----
-
-## 📊 Project Structure
-
-```
-AI-PROJECT/
-├── main_v2.py                    # Main application (SQLite + YOLOv8s)
-├── phase2_tracking.py            # Tracking, heatmaps, alerts
-├── phase3_gui.py                 # PyQt6 modern GUI
-├── phase4_multicamera.py         # Multi-camera + RTSP + REST API
-├── phase5_analytics.py           # Cloud sync + analytics + reports
-├── config.yaml                   # Configuration file
-├── requirements_v2.txt           # Python dependencies
-├── Dockerfile                    # Docker container
-├── docker-compose.yml            # Multi-service orchestration
-├── detection_records.db          # SQLite database (auto-created)
-├── README.md                     # This file
-├── UPGRADE_GUIDE.md              # Migration from v1.0
-└── PHASE4_5_README.md            # Phase 4-5 detailed guide
-```
-
----
-
-## 🗄️ Database Schema
-
-### SQLite Tables
-
-**detections** - Live detection records
-```sql
-CREATE TABLE detections (
-    id INTEGER PRIMARY KEY,
-    timestamp DATETIME,
-    date TEXT,
-    time TEXT,
-    session_id INTEGER,
-    frame_number INTEGER,
-    class_name TEXT,
-    confidence REAL,
-    bbox_x1 INTEGER, bbox_y1 INTEGER,
-    bbox_x2 INTEGER, bbox_y2 INTEGER,
-    fps REAL,
-    source_type TEXT,
-    source_path TEXT
-)
-```
-
-**sessions** - Session summaries
-```sql
-CREATE TABLE sessions (
-    session_id INTEGER PRIMARY KEY,
-    start_time DATETIME,
-    end_time DATETIME,
-    date TEXT,
-    source_type TEXT,
-    source_path TEXT,
-    total_frames INTEGER,
-    total_detections INTEGER,
-    unique_classes INTEGER,
-    avg_confidence REAL,
-    duration_seconds REAL,
-    status TEXT
-)
-```
-
----
-
-## 📡 REST API Endpoints
-
-### Health & Status
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/health` | Health check |
-| GET | `/api/model/info` | Current model info |
-
-### Camera Management
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/cameras` | List all cameras |
-| POST | `/api/cameras/add` | Add new camera |
-| DELETE | `/api/cameras/{id}` | Remove camera |
-| GET | `/api/cameras/{id}/stats` | Camera statistics |
-| GET | `/api/cameras/{id}/stream` | MJPEG stream |
-
-### Detection Data
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/detections/summary` | Detection summary |
-| GET | `/api/detections/date-range` | Date range query |
-| POST | `/api/model/update` | Update model |
-
-### WebSocket
-| Endpoint | Description |
-|----------|-------------|
-| `/ws/live` | Real-time updates |
-
-**Full API Documentation:** http://localhost:8000/docs
-
----
 
 ## ⚙️ Configuration
 
@@ -292,7 +212,7 @@ detection:
   device: "auto"                # auto, cpu, cuda, mps
 
 database:
-  type: "sqlite"                # sqlite, postgresql
+  type: "sqlite"
   path: "detection_records.db"
   backup_enabled: true
   backup_interval: 3600
@@ -307,7 +227,6 @@ performance:
 ui:
   window_width: 1600
   window_height: 1000
-  use_customtkinter: true
   chart_update_interval: 1000
 
 logging:
@@ -327,7 +246,129 @@ reports:
   output_dir: "reports"
 ```
 
----
+## 🗄️ Database Schema
+
+### detections table
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INTEGER | Primary key |
+| timestamp | DATETIME | Detection time |
+| date | TEXT | Detection date |
+| time | TEXT | Detection time |
+| session_id | INTEGER | Session reference |
+| frame_number | INTEGER | Frame number |
+| class_name | TEXT | Object class |
+| confidence | REAL | Detection confidence (0-1) |
+| bbox_x1, y1, x2, y2 | INTEGER | Bounding box coordinates |
+| fps | REAL | Processing FPS |
+| source_type | TEXT | Source type (camera/file/rtsp) |
+| source_path | TEXT | Source path/URL |
+
+### sessions table
+| Column | Type | Description |
+|--------|------|-------------|
+| session_id | INTEGER | Primary key |
+| start_time | DATETIME | Session start |
+| end_time | DATETIME | Session end |
+| date | TEXT | Session date |
+| source_type | TEXT | Source type |
+| source_path | TEXT | Source path |
+| total_frames | INTEGER | Processed frames |
+| total_detections | INTEGER | Total objects detected |
+| unique_classes | INTEGER | Unique object classes |
+| avg_confidence | REAL | Average confidence |
+| duration_seconds | REAL | Session duration |
+| status | TEXT | Session status |
+
+## 📊 Performance Metrics
+
+| Metric | Value |
+|--------|-------|
+| Database Write Speed | 500+ records/sec |
+| Model | YOLOv8s (22.5M params) |
+| Max Cameras | 4+ simultaneous |
+| Memory Usage | ~2.2GB |
+| UI Chart FPS | 60 FPS |
+| REST API Latency | <50ms |
+| Inference Speed | 30+ FPS |
+
+## 🎬 Supported Models
+
+| Model | Speed | Accuracy | Size | Use Case |
+|-------|-------|----------|------|----------|
+| YOLOv8n | ⚡⚡⚡ | ⭐⭐⭐ | 6.3M | Edge devices, real-time |
+| YOLOv8s | ⚡⚡ | ⭐⭐⭐⭐ | 22.5M | **Recommended** |
+| YOLOv8m | ⚡ | ⭐⭐⭐⭐⭐ | 49.7M | High accuracy needed |
+
+## 🔧 Troubleshooting
+
+### "No module named 'ultralytics'"
+```bash
+pip install ultralytics
+```
+
+### "CUDA not available"
+```yaml
+# In config.yaml
+detection:
+  device: "cpu"
+```
+
+### "Database locked"
+```bash
+rm detection_records.db-journal
+# Close other app instances
+```
+
+### "Low FPS"
+```yaml
+# In config.yaml
+performance:
+  adaptive_skip: true
+  max_fps: 15
+```
+
+### "Port 8000 already in use"
+```bash
+# Change port in config.yaml or run:
+python app.py --port 8001
+```
+
+### "Python not found"
+- Install Python from https://www.python.org
+- Make sure to check "Add Python to PATH"
+- Restart Command Prompt after installation
+
+### "Docker not found"
+- Install Docker Desktop from https://www.docker.com
+- Restart computer after installation
+
+## 📡 REST API Documentation
+
+When running, full interactive API docs available at:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+
+### API Endpoints
+
+#### Health & Status
+- `GET /api/health` - Health check
+- `GET /api/model/info` - Current model info
+
+#### Camera Management
+- `GET /api/cameras` - List all cameras
+- `POST /api/cameras/add` - Add new camera
+- `DELETE /api/cameras/{id}` - Remove camera
+- `GET /api/cameras/{id}/stats` - Camera statistics
+- `GET /api/cameras/{id}/stream` - MJPEG stream
+
+#### Detection Data
+- `GET /api/detections/summary` - Detection summary
+- `GET /api/detections/date-range` - Date range query
+- `POST /api/model/update` - Update model
+
+#### WebSocket
+- `WS /ws/live` - Real-time updates
 
 ## 🐳 Docker Deployment
 
@@ -351,18 +392,10 @@ docker-compose logs -f
 docker-compose down
 ```
 
-### Services
-- **API Server**: http://localhost:8000
-- **Streamlit UI**: http://localhost:8501
-- **PostgreSQL**: localhost:5432
-- **Redis**: localhost:6379
+## 📈 Performance Comparison
 
----
-
-## 📈 Performance Metrics
-
-| Metric | v1.0 | v2.0 | v3.0 | v4.0 |
-|--------|------|------|------|------|
+| Feature | v1.0 | v2.0 | v3.0 | v4.0 |
+|---------|------|------|------|------|
 | Database Speed | 50 rec/s | 500+ rec/s | 500+ rec/s | 500+ rec/s |
 | Model | YOLOv8n | YOLOv8s | YOLOv8s | YOLOv8s |
 | Cameras | 1 | 1 | 1 | 4+ |
@@ -373,74 +406,21 @@ docker-compose down
 | Reports | ❌ | ❌ | ❌ | ✅ |
 | Docker | ❌ | ❌ | ❌ | ✅ |
 
----
-
-## 🔧 Troubleshooting
-
-### Issue: "No module named 'ultralytics'"
-```bash
-pip install ultralytics
-```
-
-### Issue: CUDA not available
-```yaml
-# In config.yaml
-detection:
-  device: "cpu"
-```
-
-### Issue: Port 8000 already in use
-```bash
-# Use different port
-python -c "from phase4_multicamera import DetectionAPIServer; api = DetectionAPIServer(..., port=8001)"
-```
-
-### Issue: Database locked
-```bash
-# Close other instances and remove lock file
-rm detection_records.db-journal
-```
-
-### Issue: Low FPS
-```yaml
-# In config.yaml
-performance:
-  adaptive_skip: true
-  max_fps: 15
-```
-
----
-
-## 📚 Documentation
-
-- **[UPGRADE_GUIDE.md](UPGRADE_GUIDE.md)** - Migration from v1.0
-- **[PHASE4_5_README.md](PHASE4_5_README.md)** - Detailed Phase 4-5 guide
-- **[API Docs](http://localhost:8000/docs)** - Interactive Swagger UI
-- **[config.yaml](config.yaml)** - Configuration reference
-
----
-
 ## 🚀 Roadmap
 
 ### Phase 6 (Planned)
 - [ ] Mobile app (iOS/Android)
 - [ ] Edge deployment (Jetson, Raspberry Pi)
 - [ ] Kubernetes orchestration
-- [ ] Advanced ML models (YOLOv11, SAM)
+- [ ] YOLOv11 / SAM integration
 - [ ] Real-time alerts (Email, SMS, Slack)
 - [ ] Custom model training UI
 
----
+## 📚 Documentation
 
-## 📊 Supported Models
-
-| Model | Speed | Accuracy | Size |
-|-------|-------|----------|------|
-| YOLOv8n | ⚡⚡⚡ | ⭐⭐⭐ | 6.3M |
-| YOLOv8s | ⚡⚡ | ⭐⭐⭐⭐ | 22.5M |
-| YOLOv8m | ⚡ | ⭐⭐⭐⭐⭐ | 49.7M |
-
----
+- **[QUICK_START.md](QUICK_START.md)** - Quick start guide
+- **[config.yaml](config.yaml)** - Configuration reference
+- **[API Docs](http://localhost:8000/docs)** - Interactive Swagger UI (when running)
 
 ## 🤝 Contributing
 
@@ -451,13 +431,9 @@ Contributions welcome! Please:
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open Pull Request
 
----
-
 ## 📝 License
 
 MIT License - See LICENSE file for details
-
----
 
 ## 🙏 Acknowledgments
 
@@ -465,27 +441,28 @@ MIT License - See LICENSE file for details
 - **FastAPI** - Sebastián Ramírez
 - **PyQt6** - Qt Company
 - **OpenCV** - Intel
-
----
+- **Tkinter** - Python Software Foundation
 
 ## 📞 Support
 
 For issues, questions, or suggestions:
-1. Check [Troubleshooting](#-troubleshooting) section
-2. Review logs: `tail -f detection.log`
-3. Check configuration: `cat config.yaml`
-4. Test API: `curl http://localhost:8000/api/health`
-5. Open GitHub issue with details
 
----
+1. **Check [Troubleshooting](#-troubleshooting) section**
+2. **Review logs**: `tail -f detection.log`
+3. **Check configuration**: `cat config.yaml`
+4. **Test API**: `curl http://localhost:8000/api/health`
+5. **Open GitHub issue** with details
 
 ## 🎯 Quick Links
 
 - **GitHub**: https://github.com/bushrapopalzai/AI_Crowd_Detection_System
 - **API Docs**: http://localhost:8000/docs (when running)
-- **Docker Hub**: [Coming soon]
 - **Issues**: https://github.com/bushrapopalzai/AI_Crowd_Detection_System/issues
+- **Python**: https://www.python.org
+- **Docker**: https://www.docker.com
 
 ---
 
 **Last Updated:** January 2024 | **Version:** 4.0.0 | **Status:** Production Ready ✅
+
+**Made with ❤️ for real-time AI detection**
