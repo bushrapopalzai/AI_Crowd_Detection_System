@@ -1,0 +1,31 @@
+The commands you need to run in VS Code Terminal (one by one):
+
+Step 1: Install All Dependencies
+
+Copy
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+Copy
+pip install ultralytics opencv-python Pillow matplotlib customtkinter numpy pandas openpyxl
+
+Step 2: Run the Project
+
+Copy
+python main.py
+
+
+============================================= OR ===============================================
+
+
+# 1. Go to your project folder
+cd "d:\AI-PROJECT"
+
+# 2. Install everything
+
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+pip install ultralytics opencv-python Pillow matplotlib customtkinter numpy pandas openpyxl
+
+# 3. Run
+
+python main.py
