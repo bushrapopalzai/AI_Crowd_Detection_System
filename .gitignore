@@ -1,6 +1,55 @@
-yolov8n.pt
-*.xlsx
+# Model weights
+*.pt
+!yolov8s.pt
+
+# Database
 *.db
-*.mp4
+*.db-journal
+*.xlsx
+
+# Reports
+reports/
+*.pdf
+*.csv
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+*.egg
+
+# Environment
+.env
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Build
+build/
+dist/
+*.spec
+
+# Logs
+*.log
+logs/
+
+# Temp files
+*.tmp
+*.temp
+*~
+
+# OS
+Thumbs.db
+.AppleDouble
+.LSOverride
