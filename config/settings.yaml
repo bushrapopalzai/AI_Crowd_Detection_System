@@ -1,0 +1,36 @@
+app:
+  title: "AI Crowd Detection System v4.0"
+  version: "4.0.0"
+  theme: "dark"
+
+detection:
+  model: "yolov8s.pt"          # yolov8n.pt | yolov8s.pt | yolov8m.pt
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  device: "auto"               # auto | cpu | cuda | mps
+
+database:
+  path: "detection_records.db"
+  buffer_size: 50
+  flush_interval: 5            # seconds
+
+performance:
+  max_fps: 30
+  frame_buffer_size: 5
+  adaptive_skip: true
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_origins: ["*"]
+
+ui:
+  window_width: 1600
+  window_height: 960
+  chart_update_ms: 2000
+
+logging:
+  level: "INFO"
+  file: "detection.log"
+  max_bytes: 10485760          # 10 MB
+  backup_count: 3
