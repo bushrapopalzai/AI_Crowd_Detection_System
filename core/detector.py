@@ -1,6 +1,7 @@
 """YOLOv8 detection engine — loaded once, shared across threads."""
 
 import logging
+from typing import Tuple, List, Dict, Optional
 import numpy as np
 import cv2
 from config import get
@@ -8,13 +9,21 @@ from config import get
 logger = logging.getLogger(__name__)
 
 _MODEL_INSTANCE = None
+_LOAD_ERROR = None
 
 
 def get_model() -> "DetectionModel":
     """Return the singleton model, loading it on first call."""
-    global _MODEL_INSTANCE
-    if _MODEL_INSTANCE is None:
-        _MODEL_INSTANCE = DetectionModel()
+    global _MODEL_INSTANCE, _LOAD_ERROR
+    if _MODEL_INSTANCE is None and _LOAD_ERROR is None:
+        try:
+            _MODEL_INSTANCE = DetectionModel()
+        except Exception as e:
+            _LOAD_ERROR = e
+            logger.error("Model load failed: %s", e)
+            raise
+    if _LOAD_ERROR:
+        raise _LOAD_ERROR
     return _MODEL_INSTANCE
 
 
@@ -24,9 +33,9 @@ class DetectionModel:
         self.model_name = model_name
         self.conf: float = get("detection", "confidence_threshold", 0.5)
         self.iou: float = get("detection", "iou_threshold", 0.45)
-        self.model = None
-        self.classes: dict = {}
-        self._colors: dict = {}
+        self.model: Optional[object] = None
+        self.classes: Dict = {}
+        self._colors: Dict = {}
         self._load()
 
     # ------------------------------------------------------------------
@@ -41,16 +50,17 @@ class DetectionModel:
                 name: tuple(int(c) for c in rng.integers(60, 230, 3))
                 for name in self.classes.values()
             }
-            logger.info("Model ready — %d classes", len(self.classes))
-        except ImportError:
+            logger.info("Model ready -- %d classes", len(self.classes))
+        except ImportError as e:
             logger.error("ultralytics not installed. Run: pip install ultralytics")
             raise
-        except Exception:
-            logger.exception("Failed to load model %s", self.model_name)
-            raise
+        except Exception as e:
+            logger.error("Failed to load model %s: %s", self.model_name, e)
+            logger.warning("Continuing without model -- detection will be disabled")
+            self.model = None
 
     # ------------------------------------------------------------------
-    def detect(self, frame: np.ndarray) -> tuple[np.ndarray, list[dict]]:
+    def detect(self, frame: np.ndarray) -> Tuple[np.ndarray, List[Dict]]:
         """Run inference and draw boxes. Returns (annotated_frame, detections)."""
         if self.model is None:
             return frame, []

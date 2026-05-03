@@ -5,6 +5,7 @@ import queue
 import threading
 import time
 from datetime import datetime, timezone
+from typing import List
 
 import cv2
 
@@ -25,7 +26,7 @@ class VideoProcessor(threading.Thread):
 
         self.frame_count = 0
         self.total_dets = 0
-        self.confs: list[float] = []
+        self.confs: List[float] = []
         self.classes: set[str] = set()
 
     def run(self) -> None:

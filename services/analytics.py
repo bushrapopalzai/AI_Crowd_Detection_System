@@ -4,6 +4,7 @@ import json
 import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from typing import Optional, Tuple, Dict, Any
 
 import pandas as pd
 
@@ -25,7 +26,7 @@ class AdvancedAnalytics:
     def __init__(self, db):
         self.db = db
 
-    def get_peak_hours(self, date: str | None = None) -> dict:
+    def get_peak_hours(self, date: Optional[str] = None) -> dict:
         df = self.db.read_all()
         if df.empty:
             return {}
@@ -34,7 +35,7 @@ class AdvancedAnalytics:
         df["hour"] = pd.to_datetime(df["timestamp"], utc=True).dt.hour
         return dict(sorted(df.groupby("hour").size().items(), key=lambda x: x[1], reverse=True))
 
-    def get_class_distribution(self, date_range: tuple | None = None) -> dict:
+    def get_class_distribution(self, date_range: Optional[Tuple[str, str]] = None) -> dict:
         df = self.db.read_all()
         if df.empty:
             return {}
@@ -79,7 +80,7 @@ class ReportGenerator:
         self.db = db
         self.analytics = analytics
 
-    def generate_daily_report(self, date: str | None = None) -> dict:
+    def generate_daily_report(self, date: Optional[str] = None) -> dict:
         if date is None:
             date = datetime.now(tz=timezone.utc).strftime("%Y-%m-%d")
         df = self.db.read_all()
@@ -95,7 +96,7 @@ class ReportGenerator:
             "generated_at": datetime.now(tz=timezone.utc).isoformat(),
         }
 
-    def generate_weekly_report(self, end_date: str | None = None) -> dict:
+    def generate_weekly_report(self, end_date: Optional[str] = None) -> dict:
         end = (datetime.fromisoformat(end_date) if end_date
                else datetime.now(tz=timezone.utc))
         start = end - timedelta(days=7)

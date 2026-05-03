@@ -10,6 +10,7 @@ import time
 import tkinter as tk
 from collections import deque
 from tkinter import filedialog, messagebox, ttk
+from typing import Optional
 
 import cv2
 import matplotlib
@@ -114,8 +115,8 @@ class Dashboard:
 
         self._frame_buf: queue.Queue = queue.Queue(maxsize=get("performance", "frame_buffer_size", 5))
         self._stop = threading.Event()
-        self._proc: VideoProcessor | None = None
-        self._photo: ImageTk.PhotoImage | None = None
+        self._proc: Optional[VideoProcessor] = None
+        self._photo: Optional[ImageTk.PhotoImage] = None
         self._history: deque = deque(maxlen=300)
         self._session_id: int = int(time.time())
         self._chart_update_ms: int = get("ui", "chart_update_ms", 2000)
