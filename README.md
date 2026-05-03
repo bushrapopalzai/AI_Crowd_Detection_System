@@ -50,6 +50,8 @@ To provide an accurate, fast, and extensible AI-powered crowd and object detecti
 - Draws colour-coded bounding boxes with class label and confidence score
 - Supports 80+ COCO object classes (person, car, bag, bicycle, etc.)
 - Confidence and IoU thresholds tunable via `config/settings.yaml`
+- **NEW**: Optimized for crowd detection with lowered confidence threshold (0.35)
+- **NEW**: Real-time person counting and crowd density analysis
 
 ### Object Tracking
 - Centroid-based ByteTracker assigns persistent IDs to detected objects
@@ -287,7 +289,7 @@ All settings live in `config/settings.yaml`. Edit this file to tune the system w
 ```yaml
 detection:
   model: "yolov8s.pt"          # yolov8n.pt | yolov8s.pt | yolov8m.pt
-  confidence_threshold: 0.5    # 0.0 – 1.0, lower = more detections
+  confidence_threshold: 0.35   # Lowered for better crowd detection (was 0.5)
   iou_threshold: 0.45          # overlap threshold for NMS
   device: "auto"               # auto | cpu | cuda | mps
 
