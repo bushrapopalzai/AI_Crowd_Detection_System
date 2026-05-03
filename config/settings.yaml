@@ -5,7 +5,7 @@ app:
 
 detection:
   model: "yolov8s.pt"          # yolov8n.pt | yolov8s.pt | yolov8m.pt
-  confidence_threshold: 0.5
+  confidence_threshold: 0.35    # Lowered for better crowd detection (was 0.5)
   iou_threshold: 0.45
   device: "auto"               # auto | cpu | cuda | mps
 
